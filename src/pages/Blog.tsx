@@ -6,13 +6,13 @@ import { Card } from '@/components/ui/card';
 export function Blog() {
   const posts = [
     {
-      title: "Probability Theory (Series)",
-      excerpt: "Introduction to Probability Theory, following 'Probability Essentials' by Jean Jacod & Philip Protter.",
-      author: "Dr. John Doe",
+      title: "Fast Kaplan-Meier Estimation",
+      excerpt: "A guide to efficiently compute survival probabilities using the Kaplan-Meier estimator.",
+      author: "Rahul Goswami",
       date: "2024-01-22",
-      image: "https://images.unsplash.com/photo-1588520852907-98d19677cc7f?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600",
       category: "Statistics",
-      slug: "probability-theory-series"
+      slug: "kmjit"
     },
     {
       title: "Deep Learning in Healthcare",
@@ -68,7 +68,7 @@ export function Blog() {
                   <div className="text-sm text-gray-500">
                     By {post.author} • {new Date(post.date).toLocaleDateString()}
                   </div>
-                  <Link to={`/blog/${post.slug}`}>
+                  <Link to={`/blogs/${post.slug}`}>
                     <Button variant="ghost" className="text-teal-600 hover:text-teal-700">
                       Read More <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>

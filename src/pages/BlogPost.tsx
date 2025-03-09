@@ -2,11 +2,14 @@ import { useParams } from "react-router-dom";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 const BlogPost = () => {
-  const { slug } = useParams(); // Extracts blog slug from URL
+  const { slug } = useParams();
+        // Correct path for production
+  const markdownPath = `src/blogs/${slug}.md`;
+  console.log(`Blog Post Path: ${markdownPath}`);
 
   return (
     <div className="py-12">
-      <MarkdownRenderer markdownPath={`/blogs/${slug}.md`} />
+      <MarkdownRenderer markdownPath={markdownPath} />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,7 +27,7 @@
     --ring: 172 66% 35%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -57,4 +59,24 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Add the following lines to the end of your index.css */
+.prose h1 {
+  @apply text-3xl font-bold mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold mt-8 mb-2;
+}
+
+.prose p {
+  @apply text-base leading-relaxed mb-4;
+}
+
+.prose code {
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
