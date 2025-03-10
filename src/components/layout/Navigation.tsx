@@ -2,16 +2,22 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
+              
     <nav className="bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-gray-900">statml.in</Link>
+          <MathJaxContext>
+            <Link to="/" className="text-2xl font-bold text-gray-900">
+            <MathJax>$${" \\huge \\mathcal{statML}"}$$</MathJax>
+            </Link>
+          </MathJaxContext>
           </div>
           
           {/* Desktop Navigation */}

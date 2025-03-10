@@ -6,6 +6,12 @@ import { Services } from '@/pages/Services';
 import { Blog } from '@/pages/Blog';
 import { Contact } from '@/pages/Contact';
 import BlogPost from '@/pages/BlogPost';
+import BlogByKeyword from '@/pages/BlogByKeyword';
+import BlogByCategory from '@/pages/BlogByCategory'; // ✅ New import
+import BlogByAuthor from '@/pages/BlogByAuthor'; // ✅ New import
+import ServicePage from '@/pages/ServicePage';
+
+
 
 function App() {
   return (
@@ -18,6 +24,10 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blogs/:slug" element={<BlogPost />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="blog/keyword/:keyword" element={<BlogByKeyword />} />  {/* ✅ New route */}
+          <Route path="blog/category/:category" element={<BlogByCategory />} /> {/* ✅ New Route */}
+          <Route path="blog/author/:author" element={<BlogByAuthor />} /> {/* ✅ New Route */}
+          <Route path="services/:serviceSlug" element={<ServicePage />} />
         </Route>
       </Routes>
     </Router>
@@ -25,3 +35,6 @@ function App() {
 }
 
 export default App;
+
+
+

@@ -1,77 +1,91 @@
 import { Link } from 'react-router-dom';
 import { Brain, ChartBar, Calculator, Database, BookOpen, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 export function Services() {
   const services = [
     {
-      icon: <ChartBar className="w-12 h-12 text-teal-600" />,
+      icon: <ChartBar className="w-14 h-14 text-white" />,
       title: "Statistical Consulting",
-      description: "Expert analysis in regression, hypothesis testing, and data analysis",
-      link: "/services/statistical-consulting"
+      description: "Leverage advanced statistical methodologies for data-driven decision-making. Our expertise includes regression analysis, hypothesis testing, and in-depth data analytics tailored to your business needs.",
+      link: "/services/statistical-consulting",
+      gradient: "from-blue-500 to-teal-400"
     },
     {
-      icon: <Calculator className="w-12 h-12 text-teal-600" />,
+      icon: <Calculator className="w-14 h-14 text-white" />,
       title: "Mathematical Modeling",
-      description: "Advanced optimization and stochastic models for complex problems",
-      link: "/services/mathematical-modeling"
+      description: "We develop sophisticated mathematical models for optimization, simulation, and stochastic processes to solve complex industry challenges with precision and efficiency.",
+      link: "/services/mathematical-modeling",
+      gradient: "from-purple-500 to-indigo-400"
     },
     {
-      icon: <Brain className="w-12 h-12 text-teal-600" />,
+      icon: <Brain className="w-14 h-14 text-white" />,
       title: "AI & ML Solutions",
-      description: "Custom machine learning models and deep learning implementations",
-      link: "/services/ai-ml-solutions"
+      description: "Custom machine learning models, deep learning algorithms, and AI-driven solutions tailored for predictive analytics, automation, and intelligent data processing.",
+      link: "/services/ai-ml-solutions",
+      gradient: "from-orange-500 to-red-400"
     },
     {
-      icon: <Database className="w-12 h-12 text-teal-600" />,
+      icon: <Database className="w-14 h-14 text-white" />,
       title: "Data Science Advisory",
-      description: "Business analytics and predictive modeling expertise",
-      link: "/services/data-science"
+      description: "Strategic data science consulting, predictive modeling, and big data analytics to transform raw data into actionable business intelligence.",
+      link: "/services/data-science",
+      gradient: "from-green-500 to-emerald-400"
     },
     {
-      icon: <BookOpen className="w-12 h-12 text-teal-600" />,
+      icon: <BookOpen className="w-14 h-14 text-white" />,
       title: "Academic Support",
-      description: "Research assistance and technical paper review services",
-      link: "/services/academic-support"
+      description: "Comprehensive academic assistance, including research guidance, statistical analysis for papers, and technical review for high-impact publications.",
+      link: "/services/academic-support",
+      gradient: "from-cyan-500 to-blue-400"
     }
   ];
 
   return (
-    <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Our Services
+    <div className="py-20 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Page Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
+            Our Expertise & Services
           </h1>
-          <p className="mt-4 text-xl text-gray-500">
-            Comprehensive solutions tailored to your business needs
+          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Unlock the full potential of mathematics, AI, and statistical insights to drive innovation and business transformation.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 grid-cols-1 lg:grid-cols-2">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10">
           {services.map((service, index) => (
-            <Card key={index} className="p-8 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="p-3 bg-teal-50 rounded-lg">
-                    {service.icon}
-                  </div>
+            <Card key={index} className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300">
+              {/* Icon with Gradient Background */}
+              <div className={`absolute -top-6 -left-6 w-24 h-24 rounded-full bg-gradient-to-r ${service.gradient} opacity-20 blur-3xl`} />
+              <CardContent className="relative z-10 flex flex-col p-8">
+                {/* Icon */}
+                <div className={`flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${service.gradient} shadow-md`}>
+                  {service.icon}
                 </div>
-                <div className="flex-grow">
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 text-gray-500">
-                    {service.description}
-                  </p>
-                  <Link to={service.link}>
-                    <Button variant="ghost" className="mt-4 text-teal-600 hover:text-teal-700 p-0">
-                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+
+                {/* Title */}
+                <h3 className="mt-6 text-2xl font-semibold text-gray-900">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="mt-3 text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+
+                {/* Learn More Button */}
+                <div className="mt-6">
+                <Link to={service.link}>
+              <Button variant="outline" className="group-hover:bg-teal-600 group-hover:text-white transition duration-300">
+                Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
                 </div>
-              </div>
+              </CardContent>
             </Card>
           ))}
         </div>

@@ -144,3 +144,4 @@ print(paste(target*100, "% HPD interval:", HPD.L, "to", HPD.U))
 ## [1] "95 % HPD interval: 2.94588413015964 to 7.2851736061498"
 ```
 
+

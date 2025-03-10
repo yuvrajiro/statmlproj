@@ -1,80 +1,102 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { blogPosts } from "@/blogPosts";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
 export function Blog() {
-  const posts = [
-    {
-      title: "Fast Kaplan-Meier Estimation",
-      excerpt: "A guide to efficiently compute survival probabilities using the Kaplan-Meier estimator.",
-      author: "Rahul Goswami",
-      date: "2024-01-22",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600",
-      category: "Statistics",
-      slug: "kmjit"
-    },
-    {
-      title: "Deep Learning in Healthcare",
-      excerpt: "Exploring how deep learning is revolutionizing medical diagnosis and patient care.",
-      author: "Dr. Michael Zhang",
-      date: "2024-03-10",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600",
-      category: "AI/ML",
-      slug: "deep-learning-healthcare"
-    },
-    {
-      title: "Optimization Techniques for Supply Chain",
-      excerpt: "Advanced mathematical methods for optimizing supply chain operations.",
-      author: "Dr. Alex Kumar",
-      date: "2024-03-05",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600",
-      category: "Mathematics",
-      slug: "optimization-supply-chain"
-    }
-  ];
-
   return (
-    <div className="py-16 bg-white">
+    <div className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Blog
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Our Blog
           </h1>
-          <p className="mt-4 text-xl text-gray-500">
-            Insights and articles from our experts
+          <p className="mt-4 text-lg text-gray-600">
+            Insights & research from AI, Mathematics, and Statistical experts.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 grid-cols-1 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        {/* Blog Grid */}
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {blogPosts.map((post, index) => (
+            <Card
+              key={index}
+              className="overflow-hidden bg-white/80 backdrop-blur-lg shadow-lg hover:shadow-xl rounded-xl transition duration-300"
+            >
+              {/* Image */}
               <img
                 src={post.image}
                 alt={post.title}
-                className="h-48 w-full object-cover"
+                className="h-56 w-full object-cover rounded-t-xl"
               />
-              <div className="p-6">
-                <div className="text-sm text-teal-600 mb-2">
+
+              <CardContent className="p-6">
+                {/* Category Tag */}
+                <Link to={`/blog/category/${post.category}`} className="block">
+                <Badge className="bg-teal-500 text-white px-3 py-1 rounded-md text-xs uppercase font-medium tracking-wide">
                   {post.category}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">
+                </Badge>
+                </Link>
+
+                {/* Title */}
+                <h3 className="mt-3 text-2xl font-semibold text-gray-900 leading-tight hover:text-teal-600 transition duration-200">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-gray-500">
+
+                {/* Excerpt */}
+                <p className="mt-3 text-gray-700 text-sm leading-relaxed">
                   {post.excerpt}
                 </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="text-sm text-gray-500">
-                    By {post.author} • {new Date(post.date).toLocaleDateString()}
+
+                {/* Keywords (Tags) */}
+                {/* Keywords - Clickable */}
+                {Array.isArray(post.keywords) && post.keywords.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {post.keywords.map((keyword: string, idx: number) => (
+                      <Link key={idx} to={`/blog/keyword/${keyword}`} className="cursor-pointer">
+                        <Badge className="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full hover:bg-teal-500 hover:text-white transition duration-200">
+                          #{keyword}
+                        </Badge>
+                      </Link>
+                    ))}
                   </div>
-                  <Link to={`/blogs/${post.slug}`}>
-                    <Button variant="ghost" className="text-teal-600 hover:text-teal-700">
-                      Read More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+                )}
+              </CardContent>
+
+              {/* Footer */}
+              <CardFooter className="flex items-center justify-between px-6 pb-4">
+  <div className="flex items-center space-x-3">
+    {/* Random Avatar for Author */}
+    <img
+      src={`https://api.dicebear.com/7.x/identicon/svg?seed=${post.author}`}
+      alt={post.author}
+      className="w-8 h-8 rounded-full border border-gray-300 shadow-sm"
+    />
+
+    {/* Author Name - Styled */}
+    <div className="text-sm text-gray-600">
+      By{" "}
+      <Link
+        to={`/blogs/author/${post.author}`}
+        className="font-bold bg-gradient-to-r from-blue-500 via-teal-500 to-indigo-500 text-transparent bg-clip-text hover:underline transition-all duration-200"
+      >
+        {post.author}
+      </Link>{" "}
+      • {new Date(post.date).toLocaleDateString()}
+    </div>
+  </div>
+
+  {/* Read More Button */}
+  <Link to={`/blogs/${post.slug}`}>
+    <Button variant="outline" className="text-teal-600 hover:text-white hover:bg-teal-600">
+      Read More <ArrowRight className="ml-2 h-4 w-4" />
+    </Button>
+  </Link>
+</CardFooter>
+
             </Card>
           ))}
         </div>

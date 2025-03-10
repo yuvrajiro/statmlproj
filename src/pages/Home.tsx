@@ -58,31 +58,45 @@ export function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block">Advanced Mathematical &</span>
-                  <span className="block text-teal-600">AI Solutions for Business</span>
-                </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Expert PhD Scholars offering Statistical, Mathematical, and AI-driven solutions to optimize business processes.
-                </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <Button variant="default" className="bg-teal-600 hover:bg-teal-700">
-                    Request a Consultation
-                  </Button>
-                  <Button variant="outline" className="mt-3 sm:mt-0 sm:ml-3">
-                    Explore Our Work
-                  </Button>
-                </div>
-              </div>
-            </main>
+      
+    <div className="relative w-full h-screen bg-gray-900">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://source.unsplash.com/1600x900/?technology,data,ai')`
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-gray-900/50 to-teal-700/40"></div>
+      </div>
+
+      {/* Content Section */}
+      <div className="relative z-10 flex items-center h-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-3xl text-left">
+          {/* Animated Heading */}
+          <h1 className="text-5xl font-extrabold text-white sm:text-6xl lg:text-7xl animate-fade-in">
+            Advanced <span className="text-teal-300">Mathematical & AI</span> Solutions
+          </h1>
+
+          {/* Description */}
+          <p className="mt-6 text-lg text-gray-300 sm:text-xl">
+            PhD Scholars offering cutting-edge AI, statistical modeling, and mathematical optimization solutions tailored for your business.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 flex space-x-4">
+            <Button variant="default" className="bg-teal-500 hover:bg-teal-600 text-lg px-6 py-3 rounded-lg shadow-lg transition-all duration-300">
+              Request a Consultation
+            </Button>
+            <Button variant="outline" className="text-black border-white hover:bg-white hover:text-gray-900 text-lg px-6 py-3 rounded-lg transition-all duration-300">
+              Explore Our Work
+            </Button>
           </div>
         </div>
       </div>
+    </div>
+
+
 
       {/* Services Section */}
       <div className="py-12 bg-gray-50">
