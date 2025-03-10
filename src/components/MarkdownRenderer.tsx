@@ -9,7 +9,6 @@ import "katex/dist/katex.min.css";
 import "prism-themes/themes/prism-one-dark.css";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
