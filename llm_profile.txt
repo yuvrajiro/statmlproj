@@ -1,0 +1,519 @@
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{pifont}
+\usepackage{marvosym}
+\usepackage[colorlinks=true]{hyperref}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\vspace{-\baselineskip}\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+%\usepackage[paper=letterpaper,
+%           %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=0.7in,     % Length of section titles
+%            marginparsep=.05in,       % Space between titles and text
+%            margin=0.5in,               % 1 inch margins
+%            includemp]{geometry}
+
+% Use these lines for A4-sized paper
+\usepackage[paper=a4paper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=24mm,    % Length of section titles
+            marginparsep=1mm,       % Space between titles and text
+            margin=15mm,              % 25mm margins
+            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+%% This gives us fun enumeration environments. compactitem will be nice.
+\usepackage{paralist}
+\usepackage[shortlabels]{enumitem}
+% \usepackage[misc]{ifsym}
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.1\textwidth+0.1\marginparsep+0.1\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{3.5in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+%
+% Usage: \makeheading{name}
+%
+% Place at top of document. It should be the first thing.
+\newcommand{\makeheading}[1]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+                {\large \bfseries #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+%
+% Follow this section IMMEDIATELY with the first line of the section
+% text. Do not put whitespace in between. That is, do this:
+%
+%       \section{My Information}
+%       Here is my information.
+%
+% and NOT this:
+%
+%       \section{My Information}
+%
+%       Here is my information.
+%
+% Otherwise the top of the section header will not line up with the top
+% of the section. Of course, using a single comment character (%) on
+% empty lines allows for the function of the first example with the
+% readability of the second example.
+\renewcommand{\section}[2]%
+        {\pagebreak[2]\vspace{1\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-0.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+% \newenvironment{innerlist}[1][\enskip\textbullet]%
+\newenvironment{innerlist}[1][\enskip$\circ$]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{compactitem}[#1]}
+        {\end{compactitem}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\hyphenpenalty = 9999
+\def\vs{\vspace{-0.1in}}
+\begin{document}
+
+\makeheading{Rahul Goswami \hfill {\small Last update: {\today}}}
+
+
+\section{Contact Information}
+
+
+\newlength{\rcollength}\setlength{\rcollength}{3 in}
+\vspace{-0.2in}
+\begin{tabular}[t]{@{}p{\textwidth-1.2\rcollength}p{\rcollength}}
+
+B2-224, Kameng & \Mundus  \texttt{Blog(statML):}\href{https://www.statml.in}{http://www.statml.in}\\
+ Department of Mathematics,     & \ComputerMouse \texttt{Github:}\href{https://github.com/yuvrajiro}{https://github.com/yuvrajiro}\\
+Indian Institute of Technology,      & {\large\Letter} \texttt{LinkedIN:}\href{https://www.linkedin.com/in/yuvrajiro/}{https://www.linkedin.com/in/yuvrajiro/}\\
+Guwahati , Assam - 781039     & {\large\Letter} \texttt{Primary E-mail:}\href{mailto:rahul.goswami.131997@gmail.com}{rahul.goswami.131997@gmail.com} \\
+Mob : +919044725608     &  {\large\Letter} \texttt{Academic E-mail:}\href{rahul.goswami@iitg.ac.in}{rahul.goswami@iitg.ac.in}\\
+Whatsapp : \href{https://wa.ma/9140803463}{+919140803463}  &  {\large\Letter} \texttt{Academic Page:}\href{https://www.iitg.ac.in/stud/rahul.goswami/}{Rahul Goswami} \\
+Founding Member @ \href{https://www.labtenx.com}{LabTenX} & {\large\Letter} \texttt{Secondary E-mail:}\href{mailto:yuvrajiro@gmail.com}{yuvrajiro@gmail.com}\\
+\end{tabular} 
+
+
+\vspace{0.2in}
+\section{Affiliation} % (fold)
+\label{sec:research_backg}
+\vspace{-0.3in}
+\hspace{-0.3in}
+
+\begin{itemize}
+    \item Indian Institue of Technology, Guwahati (206123106)
+    \item Sorbonne University Abu Dhabi     
+    \item Institute of Actuaries, India (IAI-32892)
+\end{itemize}
+
+
+% ==============================================================
+\vspace{-0.12in}
+\section{TL:DR;} % (fold)
+\label{sec:research_backg}
+\vspace{-0.2in}
+
+Senior Research Fellow @ IIT Guwahati, Sorbonne Abu Dhabi for Innovation and Research Institute (SAFIR) Affiliate, Top Rated Plus Freelancer @ Upwork, Founder @ LabTenX
+
+
+% section research_backg (end)
+%% =========  ==============================
+\section{Education}
+\href{https://micromasters.mit.edu/fin/}{\textbf{MITx Micromaster Programme}}, Online. \hfill 2024--Current
+\begin{outerlist}
+    \item Micromaster in Fincance Course
+    \item Cleared Two Courses 15.415.1x: Foundations of Modern Finance I : \href{https://courses.edx.org/certificates/2a970e8b8c2a447daab5805e9fc1396c?_gl=1*8h1xr6*_gcl_au*MTUwNTc2NDA2OC4xNzQ4MzM4MzUz*_ga*MTUxMDU0NTM3Mi4xNzI5Njc2ODEw*_ga_D3KS4KMDT0*czE3NDgzMzgzNTMkbzE3JGcxJHQxNzQ4MzM4NDQ5JGo1NCRsMCRoMCRkS0RaZFB6NFdPQzVqb2tkRHNDRU5ndlc4XzRTRGFaZGNrdw..}{Cerificate}  and 15.415.2x: Foundations of Modern Finance II : \href{https://courses.edx.org/certificates/5a04ba21f6634b6cb6235521554ca719?_gl=1*qokuam*_gcl_au*MTUwNTc2NDA2OC4xNzQ4MzM4MzUz*_ga*MTUxMDU0NTM3Mi4xNzI5Njc2ODEw*_ga_D3KS4KMDT0*czE3NDgzMzgzNTMkbzE3JGcxJHQxNzQ4MzM4NTg5JGo2MCRsMCRoMCRkS0RaZFB6NFdPQzVqb2tkRHNDRU5ndlc4XzRTRGFaZGNrdw..}{Cerificate} 
+    \item Currently Pursuing Financial Reporting Course.
+\end{outerlist}
+
+\vspace{0.1in}
+
+\href{https://iitg.ac.in/}{\textbf{Indian Institute of Technology}}, Guwahati. \hfill 2021--Current
+\begin{outerlist}
+    \item Senior Research Fellow at \href{}{\textbf{Department of Mathematics}} GPA in Coursework : {\bf 8.76/10 }-- via 42 credits
+    \item In my coursework, I took 6 Courses: 1. Probability Theory, 2. Real Analysis, 3. Linear Algebra, 4. Advanced Topics in ML, 5. Advanced Statistical Algorithm, 6. Statistical Foundation for Data Science      
+    \item Course Repo for Advanced Statistical Algorithm : \href{https://github.com/yuvrajiro/MA691_Rahul_Goswami}{https://github.com/yuvrajiro/MA691}
+\end{outerlist}
+
+\vspace{0.1in}
+
+\href{https://www.bhu.ac.in/}{\textbf{Banaras Hindu University}}, Varanasi. \hfill 2018--2020
+\begin{outerlist}
+    \item M.Sc. Statistics and Computing from the Center for Interdisciplinary Mathematical Sciences, with a GPA of 8.4/10. I completed 84 credits during my Master's degree, including courses in Bayesian statistics, computational statistics, regression, probability, and survival analysis.
+    \item My interest in Bayesian inference was sparked during my Master's degree when I took my first course in Bayesian statistics. This technique has since become a key part of my approach to data analysis.
+    \item I have consolidated some of my R programming codes on my website, which you can access here: \href{https://yuvrajiro.github.io/Mini-R-Programs/}{https://yuvrajiro.github.io/Mini-R-Programs/}. These codes demonstrate my skills in R programming and statistics.
+    \item One of my notable projects is my credit card fraud detection project, which I completed using random forest. You can view the project \href{https://github.com/yuvrajiro/Mini-R-Programs/blob/master/Credit%20Card%20Fraud%20Detection%20Using%20Random%20Forest.pdf}{here}. While Random Forest is a subtle algorithm nowadays, coding it from scratch in Julia was quite challenging and provided key insights into coding tree-based algorithms.
+\end{outerlist}
+
+\vspace{0.1in}
+
+\href{http://ddugu.ac.in/}{\textbf{Deen Dayal Upadhyaya Gorakhpur University}}, Gorakhpur. \hfill 2015--2018
+\begin{outerlist}
+    \item B.Sc. Statistics and Computer Science (2yrs. Mathematics) \href{http://ddugu.ac.in/department_test.aspx?DPTid=1025}{\textbf{Department of Mathematics and Statistics}}
+    \item For my Bachelor's, I majored in Statistics and Computer Science, with two years of Mathematics courses. I graduated with First Division honors.
+    \item During my Bachelor's degree, I also completed the CS1 Certification Course by the Institute of Actuaries India, which is recognized by the Institute and Faculty of Actuaries (IFoA) in London. This certification demonstrates my knowledge and skills in actuarial science.
+\end{outerlist}
+%% =========  ==============================
+\section{Technical Skills} % (fold)
+\label{sec:technical_ski}
+\vspace{-0.25in}
+\begin{outerlist}
+    \item {\bf Programming Languages:}
+    \begin{innerlist}
+        \item \textbf{Python:} Expert – Advanced capabilities in ML, data analysis, and software development.
+        \item \textbf{R:} Expert – Proficient in statistical analysis and visualization.
+        \item \textbf{Julia:} Intermediate – Experienced in high-performance numerical computing.
+        \item \textbf{C:} Basic – Familiar with low-level programming and algorithms.
+        \item \textbf{Lean} Intermediate - LEAN System prover
+    \end{innerlist}
+    
+    \item {\bf Machine Learning Frameworks and Libraries:}
+    \begin{innerlist}
+        \item \textbf{PyTorch, TensorFlow} – Expert in deep learning model development.
+        \item \textbf{scikit-learn, scikit-survival} – Proficient in traditional ML and survival analysis.
+        \item \textbf{Hugging Face Transformers} – Skilled in NLP and state-of-the-art language models.
+        \item \textbf{OpenAI GPT, Meta’s LLaMA} – Familiar with cutting-edge large language models and their applications.
+    \end{innerlist}
+
+    \item {\bf Data Analysis and Visualization:}
+    \begin{innerlist}
+        \item \textbf{ggplot2, dplyr} – Expert in data visualization and manipulation.
+    \end{innerlist}
+
+    \item {\bf Tools and Technologies:}
+    \begin{innerlist}
+        \item Experienced with \textbf{Docker}, \textbf{Git}
+    \end{innerlist}
+\end{outerlist}
+
+
+
+
+
+
+\section{Work Experience, Freelancing, and Internship} % (fold)
+\label{sec:research_exper}
+\vspace{-0.15in}
+
+\href{https://www.turing.com/}{\textbf{Math Expert @ ByteDance}} \hfill March 2025 -- Current
+\begin{outerlist}
+    \item Quality Reviewer of Phd Level Math Question
+\end{outerlist}
+
+\href{https://www.turing.com/}{\textbf{AI Trainer @ Turing}} \hfill August 2024 -- Feb 2025
+\begin{outerlist}
+    \item Helping top companies to build AGI
+    \item Phd. Math Expert
+
+\end{outerlist}
+
+\vspace{0.1in}
+
+
+\href{https://www.adobe.com/}{\textbf{Media and Data Science Research Intern @ Adobe}} \hfill May 2024 -- August 2024
+\begin{outerlist}
+    \item Conducted research on the memorization, reasoning, and counting capabilities of large language models (LLMs).
+    \item Developed quantitative metrics to evaluate and measure LLM performance in these specific areas.
+    \item Used these metrics to guide the redesign and optimization of Adobe's in-house LLMs, enhancing their performance and efficiency.
+
+\end{outerlist}
+
+\vspace{0.1in}
+
+\href{https://allenai.org/}{\textbf{Freelanced NLP Expert @ AI2}} \hfill March 2024 -- May 2024
+\begin{outerlist}
+    \item Collaborated with the Allen Institute for AI on a project centered around natural language processing (NLP), focusing on leveraging advanced techniques to handle complex text data.
+
+    \item Applied sophisticated NLP methods to extract and analyze critical information from a large corpus of historical research papers, involving tasks such as entity recognition, relationship extraction, and summarization.
+
+    \item Contributed to the development of systems aimed at making historical research more accessible and useful by utilizing cutting-edge NLP technologies to improve information retrieval, context understanding, and knowledge synthesis.
+
+\end{outerlist}
+
+\vspace{0.1in}
+
+
+\href{https://www.uiowa.edu/}{\textbf{Research Collaborator @ Huntington's Disease Project}} \hfill Dec 2022 -- Persent
+\begin{outerlist}
+    \item Collaborated with researchers from Iowa University on a project focused on studying Huntington's Disease.
+    \item Applied expertise in Linear Mixed-Effect models to analyze data and identify covariates affecting the Year to Onset of the disease.
+    \item Contributed to data analysis, interpretation of results, and discussions with the research team, furthering our understanding of the disease and its underlying factors.
+
+\end{outerlist}
+
+
+
+
+\vspace{0.1in}
+
+\href{https://www.readytensor.com/}{\textbf{Machine Learning Engineer @ Ready Tensor}} \hfill Mar 2021 -- Dec 2021
+\begin{outerlist}
+    \item Contributed to the early-phase startup, Ready Tensor, by spearheading the implementation of advanced Machine Learning (ML) models on their platform. Collaborated closely with the team to design and develop ready-to-dockerize versions of ML models, ensuring ease of deployment and scalability.
+    \item Demonstrated expertise in improving model performance, leading to improved accuracy and efficiency compared to previous iterations. Played a pivotal role in advancing the platform's capabilities by integrating cutting-edge ML algorithms.
+    \item Specific projects included:
+    \begin{innerlist}
+        \item \href{https://github.com/yuvrajiro/rt_forecasting_TSMixer}{\textbf{rt\_forecasting\_TSMixer}} (Public): Developed advanced time-series forecasting models using the TSMixer architecture. \texttt{Python}, \texttt{Apache License 2.0}. 
+        \item \href{https://github.com/yuvrajiro/rt_forecasting_PatchMixer}{\textbf{rt\_forecasting\_PatchMixer}} (Public): Implemented the PatchMixer model for time series forecasting. \texttt{Python}, \texttt{Apache License 2.0}. 
+        \item \href{https://github.com/yuvrajiro/rt_mc_class_catboost}{\textbf{rt\_mc\_class\_catboost}} (Public): Implemented a CatBoost model for multiclass classification. 
+        \item \href{https://github.com/yuvrajiro/rt_adaboost_binary_classifier}{\textbf{rt\_adaboost\_binary\_classifier}} (Public): Implemented an AdaBoost algorithm for binary classification. \texttt{Python}, \texttt{MIT License}.
+        \item \href{https://github.com/yuvrajiro/rt_xgboost_binary_classifier}{\textbf{rt\_xgboost\_binary\_classifier}} (Public): Developed an XGBoost model for binary classification for Ready Tensor. \texttt{Python}, \texttt{MIT License}.
+    \end{innerlist}
+\end{outerlist}
+
+
+
+\vspace{0.1in}
+
+\href{https://www.chegg.com/}{\textbf{Subject Matter Expert @ Chegg Inc.}} \hfill June 2018 -- Feb 2021
+\begin{outerlist}
+    \item Helped more than 1000 students with their work on Statistics and Probability.
+    \item Provided personalized assistance, explanations, and guidance on complex concepts, resulting in better understanding and academic performance for students.
+
+\end{outerlist}
+
+
+
+
+
+
+
+
+
+\section{ Packages} % (fold)
+\label{sec:package}
+\label{sec:package}
+\textbf{Shape Penalized Decision Forests (imbalanced-spdf)}
+\begin{outerlist}
+    \item \textbf{Description:} Shape Penalized Decision Forests, for training ensemble classifiers tailored for imbalanced datasets. This package provides two primary implementations: SPBaDF and SPBoDF
+    \item \textbf{PyPI Link:} \href{https://pypi.org/project/imbalanced-spdf/}{https://pypi.org/project/imbalanced-spdf/}
+    \item \textbf{Documentation Link:} \href{https://imbalanced-spdf.readthedocs.io/en/latest/}{https://imbalanced-spdf.readthedocs.io/en/latest/}
+    \item \textbf{Project Overview and Future Plan:} Shape Penalized Decision Forests, for training ensemble classifiers tailored for imbalanced datasets. This package provides two primary implementations:SPBoDF (Shape Penalized Boosting Decision Forest): A boosting ensemble method that builds multiple trees sequentially, adjusting the weights of samples to focus on harder-to-classify instances, and SPBaDF (Shape Penalized Bagging Decision Forest): A bagging ensemble method that builds multiple trees independently on bootstrap samples of the dataset, improving robustness and reducing overfitting. Both implementations use the concept of Surface-to-Volume Regularization (SVR) to penalize irregular decision boundaries, thus improving generalization and addressing challenges associated with imbalanced datasets.
+\end{outerlist}
+
+
+
+\vspace{0.1in}
+
+\textbf{Combined Regression Strategy Survival (cobsurv)}
+\begin{outerlist}
+    \item \textbf{Description:} cobsurv is a product of a broad research project, PBSA, which stands for Proximity-Based Survival Analysis. These currently contain combined regression strategy-based models proposed by me.
+    \item \textbf{PyPI Link:} \href{https://pypi.org/project/cobsurv/}{https://pypi.org/project/cobsurv/}
+    \item \textbf{Documentation Link:} \href{https://cobsurv.readthedocs.io/en/latest/}{https://cobsurv.readthedocs.io/en/latest/}
+    \item \textbf{Project Overview and Future Plan:} The aim of the project is to provide production-ready models for survival analysis. Future plans include implementing dockerized versions of survival models with Fast API integration. The API will be built inside the dockerized implementation, making it accessible for doctors to analyze survival data without the need for deep knowledge of survival models. The ultimate goal is to create a platform for doctors.
+\end{outerlist}
+
+\vspace{0.1in}
+
+\textbf{Fast Kaplan Meier Estimator (fastkme)}
+\begin{outerlist}
+    \item \textbf{Description:} A faster Kaplan-Meier Estimator, specially created for
+working with a nonparametric Estimator.
+    \item \textbf{Github Link:} \href{https://github.com/yuvrajiro/fastkme}{https://github.com/yuvrajiro/fastkme}
+    \item \textbf{A blog:} \href{https://www.statml.in/2024-03-11-faster-kme/}{https://www.statml.in/2024-03-11-faster-kme/}
+    \item \textbf{Project Overview:} This is a tiny package which computes
+    faster Kaplan-Meier also comes with a weighted Kaplan-Meier curve.
+\end{outerlist}
+%% =========  ==============================
+\section{Research Paper} % (fold)
+\label{sec:research_exper}
+\vspace{-0.25in}
+\begin{outerlist}
+\item {\bf Shape Penalized Decision Forests for Imbalanced Data Classification (Published): } \
+Classification trees often yield fragmented minority boundaries under imbalanced data . The authors propose a surface-to-volume ratio (SVR) regularization that penalizes decision-set complexity, optimized via a greedy breadth-first splitting algorithm analogous to CART . Under mild smoothness and margin conditions, On twelve benchmarks, SVR-Trees improve true positive rate, F-measure, and geometric mean over oversampling and alternative trees, and extend naturally to multiclass settings.
+\url{https://ieeexplore.ieee.org/abstract/document/11003049}
+\item {\bf MART: Moving Average Randomized Tree (Accepted @ Springer Machine Learning): } \
+A randomized CAGR-based split method for predicting future trends in the stock market. \textcolor{blue}{ To be Published, Preprint not available}
+    \item {\bf Survival: A Different Approach (Under Review): } \
+Developed and implemented novel data-dependent techniques to aggregate survival trees, enhancing the accuracy of survival estimates for patients. Explored innovative approaches for survival analysis, contributing to advancements in the field of statistical machine learning. Currently under review for publication.
+    \item {\bf Concordance-based Survival Cobra with Regression Type Weak Learners (Under Review):} \
+Developed and proposed a novel survival analysis method, utilizing concordance-based techniques in combination with regression type weak learners. Explored innovative approaches for improving survival analysis accuracy and predictive performance. Paper available at: \url{https://arxiv.org/abs/2209.11919}
+    \item {\bf Integrated Brier Score based Survival Cobra - A Regression Based Approach (Under Review):} \
+Proposed and developed an innovative survival analysis method using an integrated Brier score-based approach combined with regression techniques. Investigated the potential of this method to enhance survival prediction accuracy and evaluated its performance through empirical analysis. Paper available at: \url{https://arxiv.org/abs/2210.12006}
+
+
+
+
+
+\end{outerlist}
+
+
+\section{Teaching Assistance} % (fold)
+\label{sec:research_exper}
+\vspace{-0.25in}
+\begin{outerlist}
+    \item {\bf Coursera DA112: Introduction to R Programming} \
+    Worked as a Teaching Assistant for the global course ``DA112: Introduction to R Programming" on Coursera. Assisted in delivering course content, addressing student inquiries, and providing support to learners worldwide, enhancing their understanding of R programming.
+
+    \item {\bf Financial Engineering: } \
+    Collaborated with Dr. Arabin Kumar Dey in instructing the Financial Risk Analysis course at the Indian Institute of Technology Guwahati. Provided guidance and support to Bachelor's Degree students, helping them comprehend and apply concepts related to financial risk analysis. Contributed to fostering a comprehensive understanding of financial engineering principles among the students.
+
+    \item {\bf Advanced Statistical Algorithm: } \
+    Assisted Dr. Arabin Kumar Dey in teaching the Advanced Statistical Algorithm course at the Indian Institute of Technology Guwahati. Interacted with students, addressed their queries, and provided guidance in understanding complex statistical algorithms. Conducted sessions on introductory Python with a focus on statistics to enhance students' programming skills. Contributed to the effective delivery of the course and provided valuable support to students pursuing their Bachelor's Degree.
+
+    \item {\bf R Programming: } \
+    Assisted Dr. Arabin Kumar Dey in teaching R programming to Undergraduate students at IIT Guwahati. Provided guidance and support to students, helping them understand and apply fundamental concepts of R programming. Contributed to creating a positive learning environment and fostering students' programming skills.
+
+    \item {\bf Applied Statistics: } \
+    Assisted Dr. Palash Ghosh in to conduct bachelor level course at IIT Guwahati
+\end{outerlist}
+
+
+
+
+
+\section{Certificate Courses and Achievements} % (fold)
+\label{sec:research_exper}
+\vspace{-0.25in}
+\begin{outerlist}
+    \item {\bf Qualified Graduate Aptitude Test in Engineering (GATE) (Statistics)} \
+Achieved All India Rank 63 out of thousands of candidates in the GATE exam, a highly competitive national-level examination conducted by premier institutes of India for admission to graduate programs in various subjects. Demonstrated proficiency in statistics and strong academic performance, which contributed to my admission to the Indian Institute of Technology, Guwahati.
+    
+    \item {\bf Qualified IIT-JAM} \
+Secured All India Rank 306 in the subject Mathematical Sciences in the Joint Admission Test for Masters (IIT-JAM), a prestigious national-level exam for admission into Masters programs at Indian Institutes of Technology (IITs). Demonstrated strong mathematical and analytical skills, contributing to my academic success and admission to a competitive Master's program.
+    
+    \item {\bf Fuzzy Logic and Neural Networks, NPTEL} \
+Completed the Fuzzy Logic and Neural Networks course as part of my Master's program. Achieved successful qualification in the proctored exam conducted by the Indian Institute of Technology. The course deepened my understanding of fuzzy logic systems and neural network architectures, enabling me to apply these concepts to complex problem domains. Certificate available upon request.
+    
+    \item {\bf Operations Research, NPTEL} \
+Successfully completed the Operations Research course offered by NPTEL during my Master's program. Achieved a top ranking of 1\% in the proctored exam conducted by the Indian Institute of Technology. The course enhanced my understanding of optimization techniques and their applications in real-world problem-solving. Certificate available at: \href{https://drive.google.com/file/d/1BTOmBcXxZhHY00OG7QRdoqNWSpc9QpYb/view}{Operations Research NPTEL Certificate Link}.
+     \item {\bf Andrew NG's Machine Learning Course} \
+Completed the renowned Machine Learning Course offered by Andrew NG on Coursera. The course covered fundamental concepts and techniques in machine learning, providing a strong foundation in the field and enhancing my ability to develop and implement machine learning algorithms effectively. Certificate available at: \href{https://coursera.org/share/389b970bb34ac90131bbef24f3b8e113}{Coursera Certificate Link}.
+     
+     \item {\bf Practical Machine Learning With TensorFlow – NPTEL} \
+Successfully completed the Massive Open Online Course (MOOC) on Practical Machine Learning With TensorFlow organized by NPTEL. The course provided comprehensive insights into practical applications of neural networks and deep learning techniques, contributing to my proficiency in machine learning and enhancing my practical skills in developing advanced models.
+    
+    \item {\bf CS1 from Institute of Actuaries India} \
+Successfully completed Core Statistics 1, a rigorous and comprehensive course, at par with the Institute and Faculty of Actuaries (IFoA) standards. Acquired in-depth knowledge and skills in fundamental statistical concepts, enhancing my analytical abilities and contributing to a solid foundation in statistics.
+
+   
+\end{outerlist}
+
+
+
+
+
+
+
+
+%% ================== block:  ==========================
+
+
+
+\end{document}

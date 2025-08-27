@@ -1,75 +1,77 @@
-import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from 'lucide-react';
+import { Github, Linkedin, Mail, BookOpen } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
+    <footer className="bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* About */}
           <div className="space-y-4">
-            <h3 className="text-white text-lg font-semibold">statml.in</h3>
-            <p className="text-gray-400 text-sm">
-              Advanced statistical and AI solutions for modern businesses
+            <h3 className="text-foreground text-lg font-medium">Rahul Goswami</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              PhD Scholar in Mathematics specializing in Statistical Machine Learning, 
+              Survival Analysis, and AI research.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a 
+                href="https://github.com/yuvrajiro" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="GitHub"
+              >
                 <Github className="h-5 w-5" />
               </a>
+              <a 
+                href="https://www.linkedin.com/in/yuvrajiro/" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a 
+                href="mailto:rahul.goswami.131997@gmail.com" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+              <a 
+                href="http://www.statml.in" 
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Blog"
+              >
+                <BookOpen className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Research */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-foreground text-lg font-medium mb-4">Research Areas</h3>
             <ul className="space-y-2">
-              <li><a href="/services" className="text-gray-400 hover:text-white text-sm">Services</a></li>
-              <li><a href="/case-studies" className="text-gray-400 hover:text-white text-sm">Case Studies</a></li>
-              <li><a href="/blog" className="text-gray-400 hover:text-white text-sm">Blog</a></li>
-              <li><a href="/about" className="text-gray-400 hover:text-white text-sm">About Us</a></li>
-              <li><a href="/careers" className="text-gray-400 hover:text-white text-sm">Careers</a></li>
+              <li className="text-muted-foreground text-sm">Survival Analysis</li>
+              <li className="text-muted-foreground text-sm">Decision Forests</li>
+              <li className="text-muted-foreground text-sm">Time Series Forecasting</li>
+              <li className="text-muted-foreground text-sm">Bayesian Statistics</li>
+              <li className="text-muted-foreground text-sm">Machine Learning</li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Contact */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li><a href="/services/statistical-consulting" className="text-gray-400 hover:text-white text-sm">Statistical Consulting</a></li>
-              <li><a href="/services/ai-ml-solutions" className="text-gray-400 hover:text-white text-sm">AI & ML Solutions</a></li>
-              <li><a href="/services/data-science" className="text-gray-400 hover:text-white text-sm">Data Science</a></li>
-              <li><a href="/services/research-support" className="text-gray-400 hover:text-white text-sm">Research Support</a></li>
-              <li><a href="/services/technical-writing" className="text-gray-400 hover:text-white text-sm">Technical Writing</a></li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-white text-lg font-semibold">Contact</h3>
-            <div className="flex items-center space-x-3 text-gray-400">
-              <Mail className="h-5 w-5" />
-              <span className="text-sm">contact@statml.in</span>
-            </div>
-            <div className="flex items-center space-x-3 text-gray-400">
-              <Phone className="h-5 w-5" />
-              <span className="text-sm">+91 (123) 456-7890</span>
-            </div>
-            <div className="flex items-center space-x-3 text-gray-400">
-              <MapPin className="h-5 w-5" />
-              <span className="text-sm">Bangalore, India</span>
+            <h3 className="text-foreground text-lg font-medium mb-4">Contact</h3>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-sm">IIT Guwahati, Assam, India</p>
+              <p className="text-muted-foreground text-sm">rahul.goswami.131997@gmail.com</p>
+              <p className="text-muted-foreground text-sm">+91 9044725608</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="text-center text-gray-400 text-sm">
-            <p>&copy; {new Date().getFullYear()} statml.in. All rights reserved.</p>
-          </div>
+        <div className="border-t border-border mt-8 pt-8 text-center">
+          <p className="text-muted-foreground text-sm">
+            © 2025 Rahul Goswami. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,6 @@
 import { ArrowRight, Github, Linkedin, Mail, FileText, BookOpen, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 export function Home() {
   const expertise = [
@@ -13,34 +12,11 @@ export function Home() {
     "Data Science"
   ];
 
-  const affiliations = [
-    "Senior Research Fellow @ IIT Guwahati",
-    "SAFIR Affiliate @ Sorbonne Abu Dhabi", 
-    "MIT MicroMaster Student",
+  const currentPositions = [
+    "PhD Scholar @ IIT Guwahati",
+    "Math Expert @ ByteDance", 
+    "AI Trainer @ Turing",
     "Founder @ LabTenX"
-  ];
-
-  const keyAchievements = [
-    {
-      title: "GATE Rank 63",
-      description: "All India Rank in Statistics",
-      category: "Academic"
-    },
-    {
-      title: "IIT-JAM Rank 306", 
-      description: "Mathematical Sciences",
-      category: "Academic"
-    },
-    {
-      title: "IEEE Publication",
-      description: "Shape Penalized Decision Forests",
-      category: "Research"
-    },
-    {
-      title: "MIT Finance",
-      description: "MicroMaster Program",
-      category: "Education"
-    }
   ];
 
   return (
@@ -66,25 +42,21 @@ export function Home() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                {affiliations.map((affiliation, index) => (
+                {currentPositions.map((position, index) => (
                   <span key={index} className="px-3 py-1 bg-secondary text-secondary-foreground text-sm rounded-full">
-                    {affiliation}
+                    {position}
                   </span>
                 ))}
               </div>
 
               <div className="flex space-x-4">
-                <Button className="bg-primary text-primary-foreground hover:opacity-90" asChild>
-                  <a href="/research">
-                    View Research
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                <Button className="bg-primary text-primary-foreground hover:opacity-90">
+                  View Research
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button variant="outline" asChild>
-                  <a href="/Resume_Rahul.pdf" download="Resume_Rahul.pdf">
-                    Download CV
-                    <FileText className="ml-2 h-4 w-4" />
-                  </a>
+                <Button variant="outline">
+                  Download CV
+                  <FileText className="ml-2 h-4 w-4" />
                 </Button>
               </div>
 
@@ -104,17 +76,13 @@ export function Home() {
               </div>
             </div>
 
-            {/* Right Content - Key Achievements */}
+            {/* Right Content - Expertise */}
             <div className="space-y-6">
-              <h3 className="text-lg font-medium text-foreground">Key Achievements</h3>
-              <div className="grid grid-cols-1 gap-4">
-                {keyAchievements.map((achievement, index) => (
+              <h3 className="text-lg font-medium text-foreground">Areas of Expertise</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {expertise.map((skill, index) => (
                   <div key={index} className="p-4 border border-border rounded-lg bg-card">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-sm font-medium text-card-foreground">{achievement.title}</h4>
-                      <Badge variant="outline" className="text-xs">{achievement.category}</Badge>
-                    </div>
-                    <p className="text-xs text-muted-foreground">{achievement.description}</p>
+                    <p className="text-sm text-card-foreground">{skill}</p>
                   </div>
                 ))}
               </div>
@@ -122,23 +90,6 @@ export function Home() {
           </div>
         </div>
       </div>
-
-      {/* Expertise Section */}
-      <section className="py-16 bg-secondary/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-medium text-foreground mb-4">Areas of Expertise</h2>
-            <p className="text-muted-foreground">Research focus and technical specializations</p>
-          </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {expertise.map((skill, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-md transition-shadow">
-                <p className="text-sm font-medium text-card-foreground">{skill}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Education Section */}
       <section className="py-20 bg-secondary/30">

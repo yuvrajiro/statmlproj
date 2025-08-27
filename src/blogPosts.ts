@@ -17,7 +17,7 @@ export const blogPosts = [
     "title": "Supervised Learning with Scikit Learn",
     "excerpt": " Machine Learning is the art of giving computers the ability to learn from data and make decisions on their own without explicitly programmed for example - The determination of benign and malign according to the tumor size - Google News Selecting similar news and making a cluster of news...",
     "author": "Unknown",
-    "date": "2025-03-10",
+    "date": "2025-08-27",
     "keywords": [
       "Scikit Learn",
       "Classification",
@@ -39,7 +39,7 @@ export const blogPosts = [
     "title": "Introduction to Logistic Regression",
     "excerpt": " Usually in Linear Regression we consider $X$ as a explanatory variable whose columns are $X_1 , X_2 .....X_{p}$ are the variables which we use predict are the independent variable $y$ , we measure these values on a continuous scale,When the dependent variable y is dichotomous such as, Male or...",
     "author": "yuvrajiro",
-    "date": "2025-03-10",
+    "date": "2025-08-27",
     "keywords": [
       "Regression",
       "Logistic"
@@ -52,7 +52,7 @@ export const blogPosts = [
     "title": "Highest Posterior Density Interval",
     "excerpt": " Highest Posterior Density Interval is interval of the parmeter in which the posterir value are high when compared to any other point outside the interval (i.e. the posterior value is high in the interval). It can be defined as a 100(1-alpha)% HPD for a parameter $\\theta$ is $\\mathcal{C} =...",
     "author": "yuvrajiro",
-    "date": "2025-03-10",
+    "date": "2025-08-27",
     "keywords": [
       "Bayesian",
       "HPDI"
@@ -65,7 +65,7 @@ export const blogPosts = [
     "title": "Convergence of Markov Chain",
     "excerpt": " ## What is Markov Chain ? Markov Chain is a Stochastic Model in which Future is dependent only on Present not on Past , What I mean to say that is $$ P(X^{t+1}|X^t,X^{t-1},...X^2,X^1) = P(X^{t+1}| X^t) $$ #### Transition Probability Matrix Let us denote $$ p_{ij} = P(X^{n+1} =...",
     "author": "yuvrajiro",
-    "date": "2025-03-10",
+    "date": "2025-08-27",
     "keywords": [
       "Markov Chain",
       "MCMC"
@@ -90,7 +90,7 @@ export const blogPosts = [
     "title": "fastkme : Faster Kaplan-Meier Estimator using JIT",
     "excerpt": " The nonaprametric survival models like Nearest Neighbour, Kernel Survival, COBRA Survival or adaptive nearest neighbour require fitting kaplan meier estimator, while tuning these models the kaplan meier estimator is calculated thousands of time, this motivates us to create kaplan meier estimator which is faster than the existing one provided...",
     "author": "yuvrajiro",
-    "date": "2025-03-10",
+    "date": "2025-08-27",
     "keywords": [
       "Survival Estimator",
       "Machine Learning"
