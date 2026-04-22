@@ -11,23 +11,34 @@ export function Research() {
       journal: "IEEE",
       description: "Classification trees often yield fragmented minority boundaries under imbalanced data. The authors propose a surface-to-volume ratio (SVR) regularization that penalizes decision-set complexity, optimized via a greedy breadth-first splitting algorithm analogous to CART.",
       link: "https://ieeexplore.ieee.org/abstract/document/11003049",
+      codeLink: "https://github.com/yuvrajiro/imbalanced-spdf",
       year: "2024"
+    },
+    {
+      title: "Moving Average Randomized Tree",
+      status: "Published",
+      journal: "Springer Machine Learning",
+      description: "A randomized CAGR-based split method for predicting future trends in the stock market.",
+      link: "https://link.springer.com/article/10.1007/s10994-025-06978-9",
+      codeLink: "https://github.com/yuvrajiro/MART",
+      year: "2026"
     }
   ];
 
   const papersUnderReview = [
     {
-      title: "MART: Moving Average Randomized Tree",
-      status: "Accepted",
-      journal: "Springer Machine Learning",
-      description: "A randomized CAGR-based split method for predicting future trends in the stock market.",
-      year: "2024",
-      note: "To be Published, Preprint not available"
+      title: "EnTransformer: A Deep Generative Transformer for Multivariate Probabilistic Forecasting",
+      status: "Under Review at ECML-PKDD",
+      description: " This work proposes EnTransformer, a deep generative forecasting framework that integrates engression, a stochastic learning paradigm for modeling conditional distributions, with the expressive sequence modeling capabilities of Transformers.",
+      link: "https://arxiv.org/abs/2603.11909",
+      codeLink: "https://github.com/yuvrajiro/EnTransformer",
+      year: "2026"
     },
     {
       title: "Survival: A Different Approach",
       status: "Under Review",
       description: "Developed and implemented novel data-dependent techniques to aggregate survival trees, enhancing the accuracy of survival estimates for patients.",
+      codeLink: "https://github.com/yuvrajiro/survival-a-different-approach",
       year: "2024"
     },
     {
@@ -35,6 +46,7 @@ export function Research() {
       status: "Under Review",
       description: "A novel survival analysis method, utilizing concordance-based techniques in combination with regression type weak learners.",
       link: "https://arxiv.org/abs/2209.11919",
+      codeLink: "https://github.com/yuvrajiro/cobsurv",
       year: "2024"
     },
     {
@@ -42,6 +54,7 @@ export function Research() {
       status: "Under Review",
       description: "An innovative survival analysis method using an integrated Brier score-based approach combined with regression techniques.",
       link: "https://arxiv.org/abs/2210.12006",
+      codeLink: "https://github.com/yuvrajiro/cobsurv",
       year: "2024"
     }
   ];
@@ -190,13 +203,22 @@ export function Research() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">{paper.description}</p>
-                {paper.link && (
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={paper.link} target="_blank" rel="noopener noreferrer">
-                      View Paper <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                )}
+                <div className="flex gap-2 flex-wrap">
+                  {paper.link && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={paper.link} target="_blank" rel="noopener noreferrer">
+                        View Paper <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {paper.codeLink && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={paper.codeLink} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" /> View Code
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -234,13 +256,22 @@ export function Research() {
                 {paper.note && (
                   <p className="text-sm text-blue-600 mb-4 italic">{paper.note}</p>
                 )}
-                {paper.link && (
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={paper.link} target="_blank" rel="noopener noreferrer">
-                      View Preprint <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                )}
+                <div className="flex gap-2 flex-wrap">
+                  {paper.link && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={paper.link} target="_blank" rel="noopener noreferrer">
+                        View Preprint <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {paper.codeLink && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={paper.codeLink} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" /> View Code
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </CardContent>
             </Card>
           ))}
