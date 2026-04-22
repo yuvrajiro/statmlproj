@@ -3,8 +3,29 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, FileText, Package } from 'lucide-react';
 
+type PublishedPaper = {
+  title: string;
+  status: string;
+  journal: string;
+  description: string;
+  link?: string;
+  codeLink?: string;
+  year: string;
+};
+
+type ReviewPaper = {
+  title: string;
+  status: string;
+  description: string;
+  link?: string;
+  codeLink?: string;
+  journal?: string;
+  note?: string;
+  year: string;
+};
+
 export function Research() {
-  const publishedPapers = [
+  const publishedPapers: PublishedPaper[] = [
     {
       title: "Shape Penalized Decision Forests for Imbalanced Data Classification",
       status: "Published",
@@ -25,7 +46,7 @@ export function Research() {
     }
   ];
 
-  const papersUnderReview = [
+  const papersUnderReview: ReviewPaper[] = [
     {
       title: "EnTransformer: A Deep Generative Transformer for Multivariate Probabilistic Forecasting",
       status: "Under Review at ECML-PKDD",
